@@ -1,0 +1,41 @@
+.navbar {
+  &__list {
+    @include flex-center();
+    align-items: center;
+    gap: 1.5rem;
+
+    @include small() {
+      gap: 2rem;
+    }
+
+    @include medium() {
+      gap: 3rem;
+    }
+
+    @include large() {
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: -12rem;
+    }
+
+    &--item {
+      .active {
+        svg {
+          fill: var(--accent);
+        }
+      }
+    }
+
+    &--link {
+      &:hover {
+        svg {
+          fill: #fff;
+        }
+      }
+      svg {
+        width: 1.8rem;
+        fill: var(--navbar-btn);
+      }
+    }
+  }
+}

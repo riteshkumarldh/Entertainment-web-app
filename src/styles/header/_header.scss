@@ -1,0 +1,32 @@
+.header {
+  background-color: var(--header-bg);
+  padding-inline: 2rem;
+  height: 6rem;
+
+  @include medium() {
+    margin: 4rem;
+    border-radius: 2rem;
+    height: 8rem;
+    padding-inline: 3rem;
+  }
+
+  @include large() {
+    position: fixed;
+    width: 8rem;
+    height: calc(100vh - 8rem);
+  }
+
+  &__container {
+    @include flex-between();
+    height: inherit;
+    gap: 2rem;
+
+    @include large() {
+      flex-direction: column;
+      padding-block: 4rem;
+    }
+  }
+}
+
+@import "./navbar";
+@import "./avatar";
