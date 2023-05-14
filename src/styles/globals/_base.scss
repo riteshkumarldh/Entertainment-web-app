@@ -1,0 +1,23 @@
+:root {
+  --body-bg: #10141e;
+  --header-bg: #171e31;
+  --navbar-btn: #5a6a90;
+  --accent: #fc4545;
+  --p-text: rgba(255, 255, 255, 0.75);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  font-family: "Outfit", sans-serif;
+}
+
+body {
+  font-size: 1.6rem;
+}
