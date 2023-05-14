@@ -70,6 +70,31 @@
   box-sizing: border-box;
 }
 
+// custom selection
+::selection {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+// custom scrollbar
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+
+  &-thumb {
+    background-color: var(--navbar-btn);
+    border-radius: 1rem;
+
+    &:hover {
+      background-color: #fff;
+    }
+  }
+
+  &-track {
+    background-color: transparent;
+  }
+}
+
 html {
   font-size: 62.5%;
   scroll-behavior: smooth;
@@ -103,18 +128,23 @@ button {
   background: none;
   font: inherit;
   border: none;
+  cursor: pointer;
 }
 
 input {
   outline: none;
 }
 
-button {
-  cursor: pointer;
-}
-
 a,
 img,
 span {
   display: block;
+}
+
+@include large() {
+  .main {
+    margin-left: 16rem;
+    height: 500vh;
+    border-left: 1px solid;
+  }
 }

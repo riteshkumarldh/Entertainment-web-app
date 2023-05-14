@@ -1,3 +1,12 @@
+// components
+import SearchBox from "../components/SearchBox";
+
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <div className="main">
+      <div className="home">
+        <SearchBox />
+      </div>
+    </div>
+  );
 }

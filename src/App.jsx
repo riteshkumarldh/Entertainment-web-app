@@ -5,6 +5,9 @@ import Home from "./pages/Home";
 import Movies from "./pages/Movies";
 import TvShows from "./pages/TvShows";
 import SingleMovie from "./pages/SingleMovie";
+import Bookmark from "./pages/Bookmark";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 
 // components
@@ -16,8 +19,11 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/tvshows" element={<TvShows />} />
+        <Route path="/bookmark" element={<Bookmark />} />
         <Route path="/movie/:id" element={<SingleMovie />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
