@@ -1,0 +1,55 @@
+.trending {
+  &__title {
+    @include typography(2.5rem, 300, 1.5);
+    margin-bottom: 2.5rem;
+  }
+
+  &__banner {
+    @include flex-center();
+    justify-content: flex-start;
+    gap: 5rem;
+    overflow-x: scroll;
+  }
+
+  &__single {
+    cursor: pointer;
+    position: relative;
+
+    &:hover {
+      & > .trending__single--overlay {
+        background-color: rgba($color: #000000, $alpha: 0.5);
+      }
+    }
+
+    &--img-cover {
+      width: 400px;
+    }
+
+    &--img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 1rem;
+    }
+
+    &--details {
+      position: absolute;
+      z-index: 3;
+      bottom: 10px;
+      left: 10px;
+      .extra {
+      }
+    }
+
+    &--overlay {
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba($color: #000000, $alpha: 0.2);
+      transition: 0.25s;
+    }
+  }
+}
