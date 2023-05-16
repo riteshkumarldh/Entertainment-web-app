@@ -144,7 +144,5 @@ span {
 @include large() {
   .main {
     margin-left: 16rem;
-    height: 500vh;
-    border-left: 1px solid;
   }
 }

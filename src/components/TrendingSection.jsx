@@ -13,7 +13,7 @@ export default function TrendingSection() {
       <h3 className="trending__title">Trending</h3>
       <div className="trending__banner">
         {isSuccess &&
-          data.results.slice(0, 10).map((movie) => {
+          data.results.slice(0, 6).map((movie) => {
             return <SingleTrendingCard key={movie.id} movie={movie} />;
           })}
       </div>
