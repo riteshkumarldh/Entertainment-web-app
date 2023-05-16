@@ -1,21 +1,22 @@
 import { useGetTrendingDataQuery } from "../features/api/apiSlice";
+// components
 import SingleTrendingCard from "./SingleTrendingCard";
+import Spinner from "./Spinner";
 
 export default function TrendingSection() {
-  const { data, isLoading, isSuccess } = useGetTrendingDataQuery();
-
-  console.log(data);
-
-  if (isLoading) return <h1>Loading...</h1>;
+  const { data, isLoading } = useGetTrendingDataQuery();
 
   return (
     <section className="trending">
       <h3 className="trending__title">Trending</h3>
       <div className="trending__banner">
-        {isSuccess &&
+        {isLoading ? (
+          <Spinner />
+        ) : (
           data.results.slice(0, 6).map((movie) => {
             return <SingleTrendingCard key={movie.id} movie={movie} />;
-          })}
+          })
+        )}
       </div>
     </section>
   );
