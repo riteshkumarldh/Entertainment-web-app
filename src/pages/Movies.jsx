@@ -7,7 +7,6 @@ import { useGetOnlyMoviesQuery } from "../features/api/apiSlice";
 
 export default function Movies() {
   const { data, isLoading } = useGetOnlyMoviesQuery();
-  console.log(data);
 
   return (
     <section className="main">
