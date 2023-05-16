@@ -1,4 +1,5 @@
 // components
+import { useState } from "react";
 import SearchBox from "../components/SearchBox";
 import SingleRecommended from "../components/SingleRecommended";
 import Spinner from "../components/Spinner";
@@ -6,7 +7,8 @@ import Spinner from "../components/Spinner";
 import { useGetOnlyMoviesQuery } from "../features/api/apiSlice";
 
 export default function Movies() {
-  const { data, isLoading } = useGetOnlyMoviesQuery();
+  const [page, setPage] = useState(1);
+  const { data, isLoading } = useGetOnlyMoviesQuery(page);
 
   return (
     <section className="main">
@@ -21,6 +23,22 @@ export default function Movies() {
               return <SingleRecommended movie={movie} key={movie.id} />;
             })
           )}
+        </div>
+        <div className="page__btns">
+          <button
+            className={`${page === 1 ? "disabled" : null} page__btn`}
+            onClick={() => setPage((prev) => prev - 1)}
+          >
+            Prev Page
+          </button>
+          <button
+            onClick={() => setPage((prev) => prev + 1)}
+            className={`${
+              !isLoading && page === data.total_pages ? "disabled" : null
+            } page__btn`}
+          >
+            Next Page
+          </button>
         </div>
       </div>
     </section>

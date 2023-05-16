@@ -6,25 +6,25 @@ export const entertainmentApi = createApi({
   endpoints: (builder) => ({
     getTrendingData: builder.query({
       query: () =>
-        `trending/all/day?language=en-US&page=5&api_key=${
-          import.meta.env.VITE_API_KEY
-        }`,
-    }),
-    getMoviesAndTvShows: builder.query({
-      query: () =>
         `trending/all/day?language=en-US&page=1&api_key=${
           import.meta.env.VITE_API_KEY
         }`,
     }),
+    getMoviesAndTvShows: builder.query({
+      query: (page) =>
+        `trending/all/day?language=en-US&page=${page}&api_key=${
+          import.meta.env.VITE_API_KEY
+        }`,
+    }),
     getOnlyMovies: builder.query({
-      query: () =>
-        `trending/movie/day?language=en-US&page=1&api_key=${
+      query: (page) =>
+        `trending/movie/day?language=en-US&page=${page}&api_key=${
           import.meta.env.VITE_API_KEY
         }`,
     }),
     getOnlyTvShows: builder.query({
-      query: () =>
-        `trending/tv/day?language=en-US&page=1&api_key=${
+      query: (page) =>
+        `trending/tv/day?language=en-US&page=${page}&api_key=${
           import.meta.env.VITE_API_KEY
         }`,
     }),

@@ -185,3 +185,25 @@ span {
     padding-block: 5rem;
   }
 }
+
+.page__btns {
+  @include flex-center();
+  gap: 2rem;
+  margin-block: 5rem;
+  .page__btn {
+    padding: 1rem 3rem;
+    border: 2px solid var(--navbar-btn);
+    border-radius: 1rem;
+    color: rgba(255, 255, 255, 0.75);
+    user-select: none;
+
+    &.disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    &:hover {
+      background-color: var(--navbar-btn);
+    }
+  }
+}
