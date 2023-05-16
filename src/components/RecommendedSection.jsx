@@ -6,8 +6,6 @@ import Spinner from "./Spinner";
 export default function RecommendedSection() {
   const { isLoading, data } = useGetMoviesAndTvShowsQuery();
 
-  console.log(data);
-
   return (
     <section className="recommended trending">
       <h3 className="trending__title">Recommended For You</h3>

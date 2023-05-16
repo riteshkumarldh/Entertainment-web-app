@@ -16,8 +16,24 @@ export const entertainmentApi = createApi({
           import.meta.env.VITE_API_KEY
         }`,
     }),
+    getOnlyMovies: builder.query({
+      query: () =>
+        `trending/movie/day?language=en-US&page=1&api_key=${
+          import.meta.env.VITE_API_KEY
+        }`,
+    }),
+    getOnlyTvShows: builder.query({
+      query: () =>
+        `trending/tv/day?language=en-US&page=1&api_key=${
+          import.meta.env.VITE_API_KEY
+        }`,
+    }),
   }),
 });
 
-export const { useGetTrendingDataQuery, useGetMoviesAndTvShowsQuery } =
-  entertainmentApi;
+export const {
+  useGetTrendingDataQuery,
+  useGetMoviesAndTvShowsQuery,
+  useGetOnlyMoviesQuery,
+  useGetOnlyTvShowsQuery,
+} = entertainmentApi;

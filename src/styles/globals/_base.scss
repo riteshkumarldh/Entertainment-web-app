@@ -172,3 +172,16 @@ span {
     transform: rotate(360deg);
   }
 }
+
+.home,
+.movies,
+.tv {
+  padding-inline: 2rem;
+}
+
+@include large() {
+  .movies,
+  .tv {
+    padding-block: 5rem;
+  }
+}

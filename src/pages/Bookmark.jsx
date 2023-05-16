@@ -1,3 +1,3 @@
 export default function Bookmark() {
-  return <div>Bookmark</div>;
+  return <section className="main">Ritesh bookmarked</section>;
 }
