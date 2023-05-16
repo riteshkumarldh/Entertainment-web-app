@@ -2,8 +2,9 @@ import { useGetTrendingDataQuery } from "../features/api/apiSlice";
 import SingleTrendingCard from "./SingleTrendingCard";
 
 export default function TrendingSection() {
-  console.log(useGetTrendingDataQuery());
   const { data, isLoading, isSuccess } = useGetTrendingDataQuery();
+
+  console.log(data);
 
   if (isLoading) return <h1>Loading...</h1>;
 
