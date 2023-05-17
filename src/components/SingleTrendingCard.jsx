@@ -1,6 +1,15 @@
+import { Link } from "react-router-dom";
+
 export default function SingleTrendingCard({ movie }) {
   return (
-    <div className="trending__single">
+    <Link
+      to={`${
+        movie.media_type === "movie"
+          ? `/movie/${movie.id}`
+          : `/tvshow/${movie.id}`
+      }`}
+      className="trending__single"
+    >
       <figure className="trending__single--img-cover">
         <img
           className="trending__single--img"
@@ -81,8 +90,7 @@ export default function SingleTrendingCard({ movie }) {
           )}
         </div>
       </div>
-      <div className="gap"></div>
       <div className="trending__single--overlay"></div>
-    </div>
+    </Link>
   );
 }

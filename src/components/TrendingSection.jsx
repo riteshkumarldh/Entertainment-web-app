@@ -13,7 +13,7 @@ export default function TrendingSection() {
         {isLoading ? (
           <Spinner />
         ) : (
-          data.results.slice(0, 6).map((movie) => {
+          data.results.slice(0, 15).map((movie) => {
             return <SingleTrendingCard key={movie.id} movie={movie} />;
           })
         )}

@@ -9,6 +9,7 @@ import Bookmark from "./pages/Bookmark";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
+import SingleTvShow from "./pages/SingleTvShow";
 
 // components
 import Header from "./components/Header";
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/tvshows" element={<TvShows />} />
         <Route path="/bookmark" element={<Bookmark />} />
         <Route path="/movie/:id" element={<SingleMovie />} />
+        <Route path="/tvshow/:id" element={<SingleTvShow />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

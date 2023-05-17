@@ -1,6 +1,15 @@
+import { Link } from "react-router-dom";
+
 export default function SingleRecommended({ movie }) {
   return (
-    <div className="recommended__single">
+    <Link
+      className="recommended__single"
+      to={`${
+        movie.media_type === "movie"
+          ? `/movie/${movie.id}`
+          : `/tvshow/${movie.id}`
+      }`}
+    >
       <div className="recommended__single--img">
         <figure>
           <img
@@ -81,6 +90,6 @@ export default function SingleRecommended({ movie }) {
           </>
         )}
       </div>
-    </div>
+    </Link>
   );
 }

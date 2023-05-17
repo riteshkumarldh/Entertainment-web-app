@@ -28,6 +28,14 @@ export const entertainmentApi = createApi({
           import.meta.env.VITE_API_KEY
         }`,
     }),
+    getSingleTvShow: builder.query({
+      query: (id) =>
+        `tv/${id}?language=en-US&api_key=${import.meta.env.VITE_API_KEY}`,
+    }),
+    getSingleMovie: builder.query({
+      query: (id) =>
+        `movie/${id}?language=en-US&api_key=${import.meta.env.VITE_API_KEY}`,
+    }),
   }),
 });
 
@@ -36,4 +44,6 @@ export const {
   useGetMoviesAndTvShowsQuery,
   useGetOnlyMoviesQuery,
   useGetOnlyTvShowsQuery,
+  useGetSingleTvShowQuery,
+  useGetSingleMovieQuery,
 } = entertainmentApi;

@@ -1,11 +1,13 @@
 import SingleMovieorTvShow from "../components/SingleMovieorTvShow";
 import Spinner from "../components/Spinner";
-import { useGetSingleMovieQuery } from "../features/api/apiSlice";
+import { useGetSingleTvShowQuery } from "../features/api/apiSlice";
 import { useParams } from "react-router-dom";
 
-export default function SingleMovie() {
+export default function SingleTvShow() {
   const { id } = useParams();
-  const { data, isLoading } = useGetSingleMovieQuery(id);
+  const { data, isLoading } = useGetSingleTvShowQuery(id);
+
+  console.log(data);
   return (
     <section className="main">
       <div className="wrapper">
