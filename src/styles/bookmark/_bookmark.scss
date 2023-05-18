@@ -1,0 +1,32 @@
+.bookmarked {
+  margin-top: 5rem;
+
+  @include large() {
+    margin-top: 0;
+    padding-top: 5rem;
+  }
+
+  & > div {
+    & > .no-bookmark {
+      grid-column: span 5;
+      @include flex-center();
+      flex-direction: column;
+      height: 200px;
+
+      h2 {
+        @include typography(2.5rem, 300, 1.5);
+      }
+
+      a {
+        margin-top: 2rem;
+        padding: 1rem 3rem;
+        border-radius: 1rem;
+        border: 1.5px solid var(--navbar-btn);
+
+        &:hover {
+          background-color: var(--navbar-btn);
+        }
+      }
+    }
+  }
+}
