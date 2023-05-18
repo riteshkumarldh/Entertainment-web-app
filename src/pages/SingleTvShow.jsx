@@ -7,7 +7,6 @@ export default function SingleTvShow() {
   const { id } = useParams();
   const { data, isLoading } = useGetSingleTvShowQuery(id);
 
-  console.log(data);
   return (
     <section className="main">
       <div className="wrapper">

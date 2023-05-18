@@ -1,6 +1,26 @@
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addRemoveBookmark } from "../features/bookmark/bookmarkSlice";
+import { useEffect, useState } from "react";
 
 export default function SingleTrendingCard({ movie }) {
+  const [saved, setSaved] = useState(false);
+  const bookmarked = useSelector((state) => state.bookmark.bookmarked);
+  const dispatch = useDispatch();
+
+  const handleBookmark = (e, movietv) => {
+    dispatch(addRemoveBookmark(movietv));
+  };
+
+  useEffect(() => {
+    const indexPresent = bookmarked.findIndex((item) => item.id === movie.id);
+    if (indexPresent >= 0) {
+      setSaved(true);
+    } else {
+      setSaved(false);
+    }
+  }, [bookmarked]);
+
   return (
     <Link
       to={`${
@@ -17,7 +37,10 @@ export default function SingleTrendingCard({ movie }) {
           alt={movie.title}
         />
       </figure>
-      <div className="trending__single--bookmark">
+      <div
+        className={`trending__single--bookmark ${saved ? "active" : null}`}
+        onClick={(e) => handleBookmark(e, movie)}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 12 14"

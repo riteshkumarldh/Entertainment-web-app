@@ -1,5 +1,25 @@
+import { useDispatch, useSelector } from "react-redux";
+import { addRemoveBookmark } from "../features/bookmark/bookmarkSlice";
+import { useEffect, useState } from "react";
+
 export default function SingleMovieorTvShow({ data }) {
-  console.log(data);
+  const [saved, setSaved] = useState(false);
+  const bookmarked = useSelector((state) => state.bookmark.bookmarked);
+  const dispatch = useDispatch();
+
+  const handleBookmark = (movietv) => {
+    dispatch(addRemoveBookmark(movietv));
+  };
+
+  useEffect(() => {
+    const indexPresent = bookmarked.findIndex((item) => item.id === data.id);
+    if (indexPresent >= 0) {
+      setSaved(true);
+    } else {
+      setSaved(false);
+    }
+  }, [bookmarked]);
+
   return (
     <div className="movietv__Single">
       <div className="movietv__single--wrapper">
@@ -10,7 +30,10 @@ export default function SingleMovieorTvShow({ data }) {
           />
         </figure>
         <div className="overlay"></div>
-        <div className="bookmark">
+        <div
+          className={`${saved ? "active" : null} bookmark`}
+          onClick={() => handleBookmark(data)}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 12 14"

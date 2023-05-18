@@ -1,6 +1,26 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { addRemoveBookmark } from "../features/bookmark/bookmarkSlice";
 
 export default function SingleRecommended({ movie }) {
+  const [saved, setSaved] = useState();
+  const bookmarked = useSelector((state) => state.bookmark.bookmarked);
+  const dispatch = useDispatch();
+
+  const handleBookmark = (movietv) => {
+    dispatch(addRemoveBookmark(movietv));
+  };
+
+  useEffect(() => {
+    const indexPresent = bookmarked.findIndex((item) => item.id === movie.id);
+    if (indexPresent >= 0) {
+      setSaved(true);
+    } else {
+      setSaved(false);
+    }
+  }, [bookmarked]);
+
   return (
     <Link
       className="recommended__single"
@@ -18,7 +38,10 @@ export default function SingleRecommended({ movie }) {
           />
         </figure>
         <div className="overlay"></div>
-        <div className="bookmark">
+        <div
+          onClick={() => handleBookmark(movie)}
+          className={`${saved ? "active" : null} bookmark`}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 12 14"
