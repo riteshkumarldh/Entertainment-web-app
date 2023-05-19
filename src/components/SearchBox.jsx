@@ -1,4 +1,17 @@
+import { useState } from "react";
+import { useGetsearchedItemQuery } from "../features/api/apiSlice";
+import avatar from "../assets/image-avatar.png";
+
 export default function SearchBox() {
+  const [term, setTerm] = useState("");
+  const [result, setResult] = useState([]);
+  const { data, isLoading } = useGetsearchedItemQuery(term);
+
+  const handleChange = (value) => {
+    setResult(data.results);
+    setTerm(value);
+  };
+
   return (
     <div className="searchbox">
       <form className="searchbox__form">
@@ -19,7 +32,38 @@ export default function SearchBox() {
           placeholder="Search for movies or TV Series"
           className="searchbox__form--input"
           autoComplete="off"
+          value={term}
+          onChange={(e) => handleChange(e.target.value)}
         />
+        <div
+          className={`${
+            term.length > 0 ? "show" : null
+          } searchbox__form--suggestions`}
+        >
+          {isLoading ? (
+            <div className="loading">Loading ....</div>
+          ) : (
+            <ul className="suggestions">
+              {data &&
+                result.map((item) => {
+                  let { poster_path } = item;
+                  const image =
+                    poster_path === undefined
+                      ? avatar
+                      : `https://image.tmdb.org/t/p/original/${poster_path}`;
+                  return (
+                    <li key={item.id} className="single">
+                      <figure>
+                        <img src={image} alt="im" />
+                      </figure>
+                      <p>{item.title}</p>
+                      <p>{item.name}</p>
+                    </li>
+                  );
+                })}
+            </ul>
+          )}
+        </div>
       </form>
     </div>
   );
