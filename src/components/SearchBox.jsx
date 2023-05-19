@@ -1,15 +1,28 @@
 import { useState } from "react";
 import { useGetsearchedItemQuery } from "../features/api/apiSlice";
 import avatar from "../assets/image-avatar.png";
+import { useNavigate } from "react-router-dom";
 
 export default function SearchBox() {
   const [term, setTerm] = useState("");
   const [result, setResult] = useState([]);
   const { data, isLoading } = useGetsearchedItemQuery(term);
+  const navigate = useNavigate();
+
+  console.log(data);
 
   const handleChange = (value) => {
     setResult(data.results);
     setTerm(value);
+  };
+
+  const handleClick = (id, item) => {
+    if (item.media_type === "tv") {
+      navigate(`/tvshow/${id}`);
+    }
+    if (item.media_type === "movie") {
+      navigate(`/movie/${id}`);
+    }
   };
 
   return (
@@ -52,7 +65,11 @@ export default function SearchBox() {
                       ? avatar
                       : `https://image.tmdb.org/t/p/original/${poster_path}`;
                   return (
-                    <li key={item.id} className="single">
+                    <li
+                      key={item.id}
+                      className="single"
+                      onClick={() => handleClick(item.id, item)}
+                    >
                       <figure>
                         <img src={image} alt="im" />
                       </figure>
