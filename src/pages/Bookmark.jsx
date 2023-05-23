@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import SingleRecommended from "../components/SingleRecommended";
 import { Link } from "react-router-dom";
+import SingleBookmark from "../components/SingleBookmark";
 
 export default function Bookmark() {
   const bookmarked = useSelector((state) => state.bookmark.bookmarked);
@@ -11,7 +11,7 @@ export default function Bookmark() {
       <div className="recommended__container">
         {bookmarked.length > 0 ? (
           bookmarked.map((data) => {
-            return <SingleRecommended key={data.id} movie={data} />;
+            return <SingleBookmark key={data.id} data={data} />;
           })
         ) : (
           <div className="no-bookmark">

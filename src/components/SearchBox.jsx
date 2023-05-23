@@ -9,8 +9,6 @@ export default function SearchBox() {
   const { data, isLoading } = useGetsearchedItemQuery(term);
   const navigate = useNavigate();
 
-  console.log(data);
-
   const handleChange = (value) => {
     setResult(data.results);
     setTerm(value);

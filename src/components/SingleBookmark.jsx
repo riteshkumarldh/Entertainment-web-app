@@ -3,43 +3,45 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addRemoveBookmark } from "../features/bookmark/bookmarkSlice";
 
-export default function SingleRecommended({ movie }) {
+export default function SingleBookmark({ data }) {
   const [saved, setSaved] = useState(false);
   const bookmarked = useSelector((state) => state.bookmark.bookmarked);
   const dispatch = useDispatch();
 
-  const handleBookmark = (movietv) => {
-    dispatch(addRemoveBookmark(movietv));
-  };
-
   useEffect(() => {
-    const indexPresent = bookmarked.findIndex((item) => item.id === movie.id);
-    if (indexPresent >= 0) {
+    const index = bookmarked.findIndex((item) => item.id === data.id);
+    if (index >= 0) {
       setSaved(true);
     } else {
       setSaved(false);
     }
   }, [bookmarked]);
 
-  return (
+  const handleBookmark = (m) => {
+    dispatch(addRemoveBookmark(m));
+  };
+
+  return data.media_type === "movie" || data.media_type === "tv" ? (
     <Link
       className="recommended__single"
       to={`${
-        movie.media_type === "movie"
-          ? `/movie/${movie.id}`
-          : `/tvshow/${movie.id}`
+        data.media_type === "movie"
+          ? `/movie/${data.id}`
+          : data.media_type === "tv"
+          ? `/tvshow/${data.id}`
+          : null
       }`}
     >
       <div className="recommended__single--img">
         <figure>
           <img
-            src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
-            alt={movie.title}
+            src={`https://image.tmdb.org/t/p/original/${data.backdrop_path}`}
+            alt={data.title}
           />
         </figure>
         <div className="overlay"></div>
         <div
-          onClick={() => handleBookmark(movie)}
+          onClick={() => handleBookmark(data)}
           className={`${saved ? "active" : null} bookmark`}
         >
           <svg
@@ -71,10 +73,10 @@ export default function SingleRecommended({ movie }) {
         </div>
       </div>
       <div className="recommended__single--extra">
-        {movie.media_type === "movie" ? (
+        {data.media_type === "movie" ? (
           <>
             <div>
-              <span>{movie.release_date}</span>
+              <span>{data.release_date}</span>
               <div className="dot"></div>
               <div className="icon">
                 <svg
@@ -86,15 +88,15 @@ export default function SingleRecommended({ movie }) {
                 >
                   <path d="M16.956 0H3.044A3.044 3.044 0 0 0 0 3.044v13.912A3.044 3.044 0 0 0 3.044 20h13.912A3.044 3.044 0 0 0 20 16.956V3.044A3.044 3.044 0 0 0 16.956 0ZM4 9H2V7h2v2Zm-2 2h2v2H2v-2Zm16-2h-2V7h2v2Zm-2 2h2v2h-2v-2Zm2-8.26V4h-2V2h1.26a.74.74 0 0 1 .74.74ZM2.74 2H4v2H2V2.74A.74.74 0 0 1 2.74 2ZM2 17.26V16h2v2H2.74a.74.74 0 0 1-.74-.74Zm16 0a.74.74 0 0 1-.74.74H16v-2h2v1.26Z" />
                 </svg>
-                <span>{movie.media_type}</span>
+                <span>{data.media_type}</span>
               </div>
             </div>
-            <h4>{movie.original_title}</h4>
+            <h4>{data.original_title}</h4>
           </>
         ) : (
           <>
             <div>
-              <span>{movie.first_air_date}</span>
+              <span>{data.first_air_date}</span>
               <div className="dot"></div>
               <div className="icon">
                 <svg
@@ -106,13 +108,13 @@ export default function SingleRecommended({ movie }) {
                 >
                   <path d="M20 4.481H9.08l2.7-3.278L10.22 0 7 3.909 3.78.029 2.22 1.203l2.7 3.278H0V20h20V4.481Zm-8 13.58H2V6.42h10v11.64Zm5-3.88h-2v-1.94h2v1.94Zm0-3.88h-2V8.36h2v1.94Z" />
                 </svg>
-                <span>{movie.media_type}</span>
+                <span>{data.media_type}</span>
               </div>
             </div>
-            <h4>{movie.name}</h4>
+            <h4>{data.name}</h4>
           </>
         )}
       </div>
     </Link>
-  );
+  ) : null;
 }
