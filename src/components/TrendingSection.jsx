@@ -4,9 +4,11 @@ import SingleTrendingCard from "./SingleTrendingCard";
 import Spinner from "./Spinner";
 
 export default function TrendingSection() {
-  const { data, isLoading } = useGetTrendingDataQuery();
+  const { data, isLoading, isError } = useGetTrendingDataQuery();
 
-  return (
+  return isError ? (
+    <h1>Error</h1>
+  ) : (
     <section className="trending">
       <h3 className="trending__title">Trending</h3>
       <div className="trending__banner">
